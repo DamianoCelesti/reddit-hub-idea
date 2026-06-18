@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f5;
+    color: #222;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+h1 {
+    margin-bottom: 8px;
+}
+
+select {
+    margin: 24px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.posts-list {
+    display: grid;
+    gap: 16px;
+}
+
+.post-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.post-card h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.post-card a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #ff4500;
+    font-weight: bold;
+    text-decoration: none;
+}
