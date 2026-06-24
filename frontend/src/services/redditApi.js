@@ -1,14 +1,58 @@
+// const BASE_URL = "https://www.reddit.com/r";
+
+// export const getSubredditPosts = async (subreddit) => {
+//     try {
+//         const response = await fetch(`${BASE_URL}/${subreddit}/hot.json`);
+
+//         if (!response.ok) {
+//             throw new Error("Errore nella richiesta a Reddit");
+//         }
+
+//         const data = await response.json();
+
+//         return data.data.children.map((item) => {
+//             const post = item.data;
+
+//             return {
+//                 id: post.id,
+//                 title: post.title,
+//                 author: post.author,
+//                 subreddit: post.subreddit,
+//                 score: post.score,
+//                 comments: post.num_comments,
+//                 url: `https://www.reddit.com${post.permalink}`,
+//                 created: post.created_utc,
+//                 selftext: post.selftext,
+//             };
+//         });
+//     } catch (error) {
+//         console.error("Errore nel recupero dei post:", error);
+//         return [];
+//     }
+// };
+
+
+
 const BASE_URL = "https://www.reddit.com/r";
 
 export const getSubredditPosts = async (subreddit) => {
     try {
-        const response = await fetch(`${BASE_URL}/${subreddit}/hot.json`);
+        const url = `${BASE_URL}/${subreddit}/hot.json`;
+
+        console.log("URL CHIAMATO:", url);
+
+        const response = await fetch(url);
+
+        console.log("STATUS:", response.status);
+        console.log("OK:", response.ok);
+
+        const data = await response.json();
+
+        console.log("DATA COMPLETA:", data);
 
         if (!response.ok) {
             throw new Error("Errore nella richiesta a Reddit");
         }
-
-        const data = await response.json();
 
         return data.data.children.map((item) => {
             const post = item.data;
@@ -16,7 +60,6 @@ export const getSubredditPosts = async (subreddit) => {
             return {
                 id: post.id,
                 title: post.title,
-                author: post.author,
                 subreddit: post.subreddit,
                 score: post.score,
                 comments: post.num_comments,
@@ -26,7 +69,7 @@ export const getSubredditPosts = async (subreddit) => {
             };
         });
     } catch (error) {
-        console.error("Errore nel recupero dei post:", error);
+        console.error("ERRORE VERO:", error);
         return [];
     }
 };
