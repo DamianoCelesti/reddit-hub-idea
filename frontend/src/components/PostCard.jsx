@@ -1,14 +1,10 @@
-function PostCard({ post }) {
+function PostCard({ post, onSave }) {
     return (
         <article className="post-card">
             <h2>{post.title}</h2>
 
             <p>
                 <strong>Subreddit:</strong> r/{post.subreddit}
-            </p>
-
-            <p>
-                <strong>Autore:</strong> u/{post.author}
             </p>
 
             <p>
@@ -27,6 +23,12 @@ function PostCard({ post }) {
             <a href={post.url} target="_blank" rel="noreferrer">
                 Apri su Reddit
             </a>
+
+            {onSave && (
+                <button onClick={() => onSave(post)}>
+                    Salva post
+                </button>
+            )}
         </article>
     );
 }
