@@ -86,7 +86,7 @@ function Home() {
 
             <p>
                 Premi il bottone per caricare i post hot dai subreddit scelti.
-                I post già salvati non verranno mostrati di nuovo.
+
             </p>
 
             <button onClick={fetchNewPosts} disabled={loading}>
