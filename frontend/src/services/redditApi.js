@@ -33,26 +33,17 @@
 
 
 
-const BASE_URL = "https://www.reddit.com/r";
+const BASE_URL = "/reddit/r";
 
 export const getSubredditPosts = async (subreddit) => {
     try {
-        const url = `${BASE_URL}/${subreddit}/hot.json`;
-
-        console.log("URL CHIAMATO:", url);
-
-        const response = await fetch(url);
-
-        console.log("STATUS:", response.status);
-        console.log("OK:", response.ok);
-
-        const data = await response.json();
-
-        console.log("DATA COMPLETA:", data);
+        const response = await fetch(`${BASE_URL}/${subreddit}/hot.json`);
 
         if (!response.ok) {
             throw new Error("Errore nella richiesta a Reddit");
         }
+
+        const data = await response.json();
 
         return data.data.children.map((item) => {
             const post = item.data;
@@ -69,7 +60,7 @@ export const getSubredditPosts = async (subreddit) => {
             };
         });
     } catch (error) {
-        console.error("ERRORE VERO:", error);
+        console.error(error);
         return [];
     }
 };
