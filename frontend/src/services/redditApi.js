@@ -33,32 +33,17 @@
 
 
 
-const BASE_URL = "/reddit/r";
+const BASE_URL = "http://localhost:3000/api";
 
-export const getSubredditPosts = async (subreddit) => {
+export const getSubredditPosts = async () => {
     try {
-        const response = await fetch(`${BASE_URL}/${subreddit}/hot.json`);
+        const response = await fetch(`${BASE_URL}/posts`);
 
         if (!response.ok) {
-            throw new Error("Errore nella richiesta a Reddit");
+            throw new Error("Errore nella richiesta al backend");
         }
 
-        const data = await response.json();
-
-        return data.data.children.map((item) => {
-            const post = item.data;
-
-            return {
-                id: post.id,
-                title: post.title,
-                subreddit: post.subreddit,
-                score: post.score,
-                comments: post.num_comments,
-                url: `https://www.reddit.com${post.permalink}`,
-                created: post.created_utc,
-                selftext: post.selftext,
-            };
-        });
+        return await response.json();
     } catch (error) {
         console.error(error);
         return [];
